@@ -1,10 +1,10 @@
-package com.rishab99058.vingo;
+package com.rishab99058.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class VingoApplicationTests {
+class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {
