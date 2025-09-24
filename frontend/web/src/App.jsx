@@ -6,6 +6,7 @@ const App = () => {
       <h1 className="bg-red-500">
     Hello world!
   </h1>
+  <p> Hey I am learning something...</p>
     </div>
   )
 }
