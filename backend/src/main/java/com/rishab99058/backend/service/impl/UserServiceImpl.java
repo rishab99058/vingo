@@ -6,7 +6,6 @@ import com.rishab99058.backend.repository.UserRepository;
 import com.rishab99058.backend.response.UserResponse;
 import com.rishab99058.backend.security.JwtService;
 import com.rishab99058.backend.service.UserService;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
