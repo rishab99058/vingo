@@ -47,4 +47,15 @@ public class JwtService {
 
     }
 
+    public String getEmailFromJwtToken(String token) {
+        Claims claims = Jwts.parser()
+                .verifyWith(getSecretKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+
+        return claims.get("email", String.class);
+    }
+
+
 }

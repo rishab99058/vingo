@@ -90,7 +90,7 @@ public class AuthServiceImpl implements AuthService {
             }
             UserEntity userEntity = new UserEntity();
             userEntity.setEmail(signUpRequest.getEmail());
-            userEntity.setName(signUpRequest.getEmail());
+            userEntity.setName(signUpRequest.getFullName());
             userEntity.setPassword(signUpRequest.getPassword());
             userEntity.setRole(Roles.valueOf(signUpRequest.getRole()));
             userEntity.setCreatedAt(new Date());
@@ -191,7 +191,6 @@ public class AuthServiceImpl implements AuthService {
         return baseResponse;
     }
 
-
     private OtpEntity prepareOtp(String email) {
         String otp = String.format("%06d", new Random().nextInt(999999));
         OtpEntity otpEntity = new OtpEntity();
@@ -204,6 +203,8 @@ public class AuthServiceImpl implements AuthService {
 
         return otpEntity;
     }
+
+
 
 
 }
