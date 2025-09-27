@@ -30,7 +30,19 @@ public class JwtService {
                 .claim("email", user.getEmail())
                 .claim("roles", List.of(user.getRole()))
                 .issuedAt(new Date(now))
-                .expiration(new Date(now + 1000 * 60 * 60 * 24))
+                .expiration(new Date(now + 1000 * 60 * 10 ))
+                .signWith(getSecretKey())
+                .compact();
+    }
+
+    public String generateRefreshToken(UserEntity user) {
+        long now = System.currentTimeMillis();
+        return Jwts.builder()
+                .subject(user.getId())
+                .claim("email", user.getEmail())
+                .claim("roles", List.of(user.getRole()))
+                .issuedAt(new Date(now))
+                .expiration(new Date(now + 1000L * 60 * 60 * 24*30*6))
                 .signWith(getSecretKey())
                 .compact();
     }

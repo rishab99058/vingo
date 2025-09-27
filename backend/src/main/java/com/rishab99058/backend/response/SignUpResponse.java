@@ -6,8 +6,11 @@ import lombok.Data;
 
 @Data
 public class SignUpResponse extends BaseResponse {
-    @JsonProperty("token")
+    @JsonProperty("access_token")
     private String jwtToken;
+
+    @JsonProperty("refresh_token")
+    private String refreshToken;
 
     @JsonProperty("user_details")
     private UserModel user;

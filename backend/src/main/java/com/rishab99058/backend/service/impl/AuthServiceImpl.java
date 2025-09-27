@@ -55,7 +55,10 @@ public class AuthServiceImpl implements AuthService {
             UserEntity userEntity = customUser.getUserEntity();
             String jwt = jwtService.generateJwtToken(userEntity);
 
+            String refreshToken = jwtService.generateRefreshToken(userEntity);
+
             signUpResponse.setJwtToken(jwt);
+            signUpResponse.setRefreshToken(refreshToken);
             prepareUserModel(signUpResponse, userEntity);
             signUpResponse.setMessage("User logged in successfully");
             signUpResponse.setHttpStatus(HttpStatus.OK);
@@ -189,6 +192,30 @@ public class AuthServiceImpl implements AuthService {
         }
 
         return baseResponse;
+    }
+
+    @Override
+    public SignUpResponse getRefreshToken(String refreshToken) {
+        SignUpResponse signUpResponse = new SignUpResponse();
+        try {
+            String id = jwtService.getUserIdFromJwtToken(refreshToken);
+            UserEntity userEntity = userRepository.findByIdAndDeletedAtNull(id);
+            if (userEntity == null) {
+                throw new Exception("User doesn't exist with the given email id");
+            }
+            String accessToken = jwtService.generateJwtToken(userEntity);
+            signUpResponse.setJwtToken(accessToken);
+            signUpResponse.setRefreshToken(refreshToken);
+            prepareUserModel(signUpResponse, userEntity);
+            signUpResponse.setMessage("User logged in successfully");
+            signUpResponse.setHttpStatus(HttpStatus.OK);
+
+        } catch (Exception exception) {
+            log.error("Exception in fetching the data from refresh token : {}", exception.getMessage());
+            signUpResponse.setMessage(exception.getMessage());
+            signUpResponse.setHttpStatus(HttpStatus.BAD_REQUEST);
+        }
+        return signUpResponse;
     }
 
     private OtpEntity prepareOtp(String email) {
