@@ -27,7 +27,7 @@ public class AuthController {
     private final AuthService authService;
 
     @Value("${deploy.env}")
-    private String env;
+    private String deployEnv;
 
     @PostMapping("/sign_up")
     public SignUpResponse signUp(@RequestBody SignUpRequest signUpRequest) {
@@ -41,7 +41,7 @@ public class AuthController {
         SignUpResponse signUpResponse = authService.login(signUpRequest);
         Cookie cookie = new Cookie("refreshToken", signUpResponse.getRefreshToken());
         cookie.setHttpOnly(true);
-        cookie.setSecure("production".equals(env));
+        cookie.setSecure("production".equals(deployEnv));
         response.addCookie(cookie);
         return signUpResponse;
     }

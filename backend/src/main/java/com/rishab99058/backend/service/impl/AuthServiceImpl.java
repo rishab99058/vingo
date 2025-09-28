@@ -79,6 +79,7 @@ public class AuthServiceImpl implements AuthService {
         userModel.setPhoneNo(userEntity.getPhoneNo());
         userModel.setId(userEntity.getId());
         userModel.setRole(userEntity.getRole());
+        userModel.setImageUrl(userEntity.getImageUrl());
 
         signUpResponse.setUser(userModel);
     }

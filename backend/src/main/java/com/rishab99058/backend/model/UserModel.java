@@ -17,4 +17,6 @@ public class UserModel {
     private String phoneNo;
     @JsonProperty("role")
     private Roles role;
+    @JsonProperty("profile")
+    private String imageUrl;
 }

@@ -27,6 +27,7 @@ public class UserEntity {
     private String password;
     private String phoneNo;
     private Roles role;
+    private String imageUrl;
     private Date createdAt;
     private Date updateAt;
     private Date deletedAt;
