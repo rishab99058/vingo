@@ -38,6 +38,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/customer/**").hasRole(Roles.CUSTOMER.toString())
                         .requestMatchers("/owner/**").hasRole(Roles.OWNER.toString())
                         .requestMatchers("/courier/**").hasRole(Roles.DELIVERY_BOY.toString())
+                        .requestMatchers("/restaurant/**").hasRole(Roles.RESTAURANT.toString())
                         .anyRequest()
                         .authenticated())
                 .sessionManagement(session->session
