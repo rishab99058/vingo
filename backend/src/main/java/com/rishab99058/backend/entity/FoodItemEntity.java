@@ -11,6 +11,9 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Document(collection = "foodItem")
 public class FoodItemEntity {
     @Id
     private String id;
